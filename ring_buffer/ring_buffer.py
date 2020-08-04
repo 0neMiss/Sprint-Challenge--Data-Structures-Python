@@ -1,12 +1,25 @@
 class RingBuffer:
     def __init__(self, capacity):
-        self.capacty = capacity
+        #max compacity
+        self.capacity = capacity
+        #storage
         self.data = []
-    class __Full:
+        self.count = 0
 
-        def append(self, item):
-            self.data[self.cur] = item
-            self.cur = (self.cur+1) % self.max
+    def append(self, item):
+        if len(self.data) < self.capacity:
+            print(item)
+            self.data.append(item)
+            print(self.data)
 
+        else:
+            print(item)
+            #remove first element
+            self.data.pop(0)
+            #insert the
+            self.data.insert(self.count, item)
+                self.count += 1
+            print(self.data)
     def get(self):
-        pass
+
+        return self.data

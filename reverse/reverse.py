@@ -3,6 +3,7 @@ class Node:
         self.value = value
         self.next_node = next_node
 
+
     def get_value(self):
         return self.value
 
@@ -15,7 +16,6 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
-
     def add_to_head(self, value):
         node = Node(value)
 
@@ -39,11 +39,16 @@ class LinkedList:
         return False
 
     def reverse_list(self, node, prev):
+        #bug is that cur is never hitting none on the while loop, alternates between 4 and 5
         cur = node
         while cur:
-            if cur.next_node:
-                temp = cur.get_next()
-                temp.set_next(cur)
-                cur = temp
-            else:
-                return cur
+            #sets next to the next node
+            next = cur.next_node
+            #sets prev to tne next node as well
+            cur.next_node = prev
+            #sets prev to current node
+            prev =cur
+            #sets cur to next node
+            cur =next
+        #if cur is none then prev will be head
+        self.head = prev
